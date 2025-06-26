@@ -476,7 +476,7 @@ SMODS.Joker{
         }]]
     },
     atlas = 'catjokers', --atlas' key
-    rarity = 2, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    rarity = 3, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
     --soul_pos = { x = 0, y = 0 },
     cost = 6, --cost
     unlocked = true, --where it is unlocked or not: if true, 
@@ -590,7 +590,7 @@ SMODS.Joker{
         }]]
     },
     atlas = 'catjokers', --atlas' key
-    rarity = 2, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    rarity = 3, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
     soul_pos = { x = 2, y = 3 },
     cost = 6, --cost
     unlocked = true, --where it is unlocked or not: if true, 
@@ -724,7 +724,7 @@ SMODS.Joker{
         }]]
     },
     atlas = 'catjokers', --atlas' key
-    rarity = 1, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    rarity = 3, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
     --soul_pos = { x = 0, y = 0 },
     cost = 3, --cost
     unlocked = true, --where it is unlocked or not: if true, 
