@@ -688,7 +688,7 @@ SMODS.Joker{
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_add
             return {
                 message = localize('k_upgrade_ex'),
-                colour = G.C.mult
+                colour = G.C.FILTER
             }
         end
         if context.joker_main then
@@ -714,7 +714,10 @@ SMODS.Joker{
     loc_txt = { -- local text
         name = "Floppa",
         text = {
-          '{C:chips}+#1#{} Chips'
+          '{C:attention}+#1#{} hand size',
+          '{C:green}#2# in #3#{} chance to increase',
+          'hand size by {C:attention}+#4#{} when',
+          'a {C:attention}Blind{} is defeated',
         },
         --[[unlock = {
             'Be {C:legendary}cool{}',
@@ -731,27 +734,45 @@ SMODS.Joker{
     perishable_compat = false, --can it be perishable
     pos = {x = 1, y = 3}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
-      extra = {
-        chips = 100,
-      }
+        probabilties = {
+            normal = 1
+        },
+        extra = {
+            handsize = 1,
+            chance = 4,
+            increase = 1,
+        }
     },
     loc_vars = function(self,info_queue,center)
         return {
             vars = {
-                center.ability.extra.chips
+                center.ability.extra.handsize,
+                G.GAME.probabilities.normal,
+                center.ability.extra.chance,
+                center.ability.extra.increase
             }
         } --#1# is replaced with card.ability.extra.Xmult
     end,
     check_for_unlock = function(self, args)
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
+    add_to_deck = function(self, card, from_debuff)
+        G.hand:change_size(card.ability.extra.handsize)
+    end,
+    remove_from_deck = function(self, card, from_debuff)
+        G.hand:change_size(-card.ability.extra.handsize)
+    end,
     calculate = function(self,card,context)
-        if context.joker_main then
-            return {
-                card = card,
-                chips = card.ability.extra.chips,
-                colour = G.C.CHIPS
-            }
+        if context.end_of_round and context.cardarea ~= G.hand then
+            if pseudorandom('floppa') < G.GAME.probabilities.normal/card.ability.extra.chance then
+                card.ability.extra.handsize = card.ability.extra.handsize + card.ability.extra.increase
+                G.hand:change_size(card.ability.extra.increase)
+                return {
+                    card = self,
+                    message = localize('k_upgrade_ex'),
+                    colour = G.C.FILTER
+                }
+            end
         end
 
     end,
@@ -821,6 +842,9 @@ SMODS.Joker{
         if context.setting_blind then
             card.ability.extra.limit = card.ability.extra.limit * card.ability.extra.limit_mult
             card.ability.extra.chips = card.ability.extra.chips * card.ability.extra.chipsmult
+            if card.ability.extra.chips > card.ability.extra.limit then
+                card.ability.extra.chips = card.ability.extra.limit
+            end
             card.ability.extra.maxxed = 0
             return {
                 message = localize('k_upgrade_ex'),
