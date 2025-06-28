@@ -311,7 +311,7 @@ SMODS.Joker{
         }]]
     },
     atlas = 'catjokers', --atlas' key
-    rarity = 2, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    rarity = 1, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
     --soul_pos = { x = 0, y = 0 },
     cost = 4, --cost
     unlocked = true, --where it is unlocked or not: if true, 
@@ -325,8 +325,8 @@ SMODS.Joker{
             normal = 1,
         },
         extra = {
-            chips = 360,
-            mult = 36,
+            chips = 250,
+            mult = 25,
             m_chance = 2,
             c_chance = 2,
         }
@@ -599,8 +599,8 @@ SMODS.Joker{
     },
     loc_vars = function(self, info_queue, card)
         if card.area and card.area == G.jokers then
-            local compatible = G.jokers.cards[#G.jokers.cards] and G.jokers.cards[#G.jokers.cards] ~= card and
-                G.jokers.cards[1].config.center.blueprint_compat
+            local compatible = G.jokers.cards[1] and G.jokers.cards[1] ~= card and
+                G.jokers.cards[#G.jokers.cards].config.center.blueprint_compat
             local main_end = {
                 {
                     n = G.UIT.C,
@@ -610,7 +610,7 @@ SMODS.Joker{
                             n = G.UIT.C,
                             config = { ref_table = card, align = "m", colour = compatible and mix_colours(G.C.GREEN, G.C.JOKER_GREY, 0.8) or mix_colours(G.C.RED, G.C.JOKER_GREY, 0.8), r = 0.05, padding = 0.06 },
                             nodes = {
-                                { n = G.UIT.T, config = { text = ' ' .. localize('k_' .. (compatible and 'incompatible' or 'compatible')) .. ' ', colour = G.C.UI.TEXT_LIGHT, scale = 0.32 * 0.8 } },
+                                { n = G.UIT.T, config = { text = ' ' .. localize('k_' .. (compatible and 'compatible' or 'incompatible')) .. ' ', colour = G.C.UI.TEXT_LIGHT, scale = 0.32 * 0.8 } },
                             }
                         }
                     }

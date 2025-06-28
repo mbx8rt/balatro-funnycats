@@ -134,7 +134,7 @@ SMODS.Booster{
     atlas = 'catboosters',
     pos = {x = 1,y = 1},
     discovered = false,
-    weight = 0.5,
+    weight = 9999,
     cost = 8,
     config = {
         extra = 4,

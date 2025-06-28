@@ -19,6 +19,7 @@ SMODS.Atlas{
 
 SMODS.ObjectType{
     key = "catjokers",
+    default = 'j_funnycats_canny_cat',
     cards = {
         ['j_funnycats_canny_cat'] = true,
         ['j_funnycats_uncanny_cat'] = true,
@@ -31,7 +32,29 @@ SMODS.ObjectType{
         ['j_funnycats_long_cat'] = true,
         ['j_funnycats_larry'] = true,
         ['j_funnycats_floppa'] = true,
-    }
+        
+        ['j_funnycats_ultra_glungus'] = true,
+        ['j_funnycats_cat_astro'] = true,
+        ['j_funnycats_glorpsto'] = true
+    },
+    rarities = {
+        {
+            key = "Common",
+            rate = 1
+        },
+        {
+            key = 'Uncommon',
+            rate = 0.75
+        },
+        {
+            key = 'Rare',
+            rate = 0.25
+        },
+        {
+            key = 'Legendary',
+            rate = 0.05
+        },
+    },
 }
 
 local mod_path = "" .. SMODS.current_mod.path

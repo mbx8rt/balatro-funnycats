@@ -2,7 +2,7 @@
 	"id": "funnycats",
 	"name": "funnycats",
 	"display_name": "Funny Cats [WIP]",
-	"author": ["Mbx8_rt"],
+	"author": ["mbx8_rt"],
 	"description": "MEOW! MRRP MRRP MEOW! FUNNY CATS! (credits to elial1 for the custom joker template, credits to astro, superbread and alatr for helping with art for the mod)",
 	"prefix": "funnycats",
 	"main_file": "funnycats.lua",
