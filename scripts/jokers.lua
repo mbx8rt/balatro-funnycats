@@ -662,7 +662,7 @@ SMODS.Joker{
         mult = 0, --configurable value
         mult_add = 3,
         chips = 0,
-        chips_add = 16
+        chips_add = 20
       }
     },
     loc_vars = function(self,info_queue,center)
@@ -765,6 +765,109 @@ SMODS.Joker{
                     card = self,
                     message = localize('k_upgrade_ex'),
                     colour = G.C.FILTER
+                }
+            end
+        end
+
+    end,
+    in_pool = function(self,wawa,wawa2)
+        --whether or not this card is in the pool, return true if it is, return false if its not
+        return true
+    end,
+}
+SMODS.Joker{
+    key = 'uni', --joker key
+    loc_txt = { -- local text
+        name = "Uni :3",
+        text = {
+          '{X:mult,C:white}X#1#{} Mult',
+          'secondary ability {C:attention}Randomizes{}',
+          'when a {C:attention}Blind{} is defeated',
+          '{C:inactive}(Currently #5#)'
+        },
+        --[[unlock = {
+            'Be {C:legendary}cool{}',
+        }]]
+    },
+    atlas = 'catjokers', --atlas' key
+    rarity = 3, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    --soul_pos = { x = 0, y = 0 },
+    cost = 8, --cost
+    unlocked = true, --where it is unlocked or not: if true, 
+    discovered = false, --whether or not it starts discovered
+    blueprint_compat = true, --can it be blueprinted/brainstormed/other
+    eternal_compat = false, --can it be eternal
+    perishable_compat = false, --can it be perishable
+    pos = {x = 3, y = 3}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
+    config = { 
+      extra = {
+        mode = -1,
+        mult = 25,
+        money = 10,
+        chips = 500,
+        Xmult = 1.5, --configurable value
+        text = ""
+      }
+    },
+    loc_vars = function(self,info_queue,center)
+        if center.ability.extra.mode == -1 then
+            center.ability.extra.text = 'uni_default_text'
+        elseif center.ability.extra.mode == 0 then
+            center.ability.extra.text = 'uni_chips_text'
+        elseif center.ability.extra.mode == 1 then
+            center.ability.extra.text = 'uni_mult_text'
+        elseif center.ability.extra.mode == 2 then
+            center.ability.extra.text = 'uni_money_text'
+        end
+        return {vars = {
+            center.ability.extra.Xmult,
+            center.ability.extra.chips,
+            center.ability.extra.mult,
+            center.ability.extra.money,
+            },
+            key = center.ability.extra.text
+        }
+    end,
+    add_to_deck = function(self, card, from_debuff)
+        card.ability.extra.mode = math.floor((pseudorandom('uni :3') * 2) + 0.5)
+    end,
+    check_for_unlock = function(self, args)
+        unlock_card(self) --unlocks the card if it isnt unlocked
+    end,
+    calculate = function(self,card,context)
+        if context.end_of_round and context.cardarea ~= G.hand then
+            card.ability.extra.mode = math.floor((pseudorandom('uni :3') * 2) + 0.5)
+            return {
+                message = 'Randomize!',
+                colour = G.C.FILTER
+            }
+        end
+        if context.joker_main then
+            if card.ability.extra.mode == 0 then
+                return {
+                    card = card,
+                    chips = card.ability.extra.chips,
+                    Xmult_mod = card.ability.extra.Xmult,
+                    message = 'X' .. card.ability.extra.Xmult,
+                    colour = G.C.MULT,
+                }
+            end
+            if card.ability.extra.mode == 1 then
+                return {
+                    card = card,
+                    mult = card.ability.extra.mult,
+                    Xmult_mod = card.ability.extra.Xmult,
+                    message = 'X' .. card.ability.extra.Xmult,
+                    colour = G.C.MULT,
+                }
+            end
+            if card.ability.extra.mode == 2 then
+                return {
+                    card = card,
+                    dollar = card.ability.extra.money,
+                    Xmult_mod = card.ability.extra.Xmult,
+                    message = 'X' .. card.ability.extra.Xmult,
+                    colour = G.C.MULT,
                 }
             end
         end
