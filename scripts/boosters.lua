@@ -17,7 +17,7 @@ SMODS.Booster{
     weight = 1,
     cost = 4,
     config = {
-        extra = 3,
+        extra = 2,
         choose = 1
     },
     loc_vars = function(self,info_queue,center)
@@ -57,7 +57,7 @@ SMODS.Booster{
     weight = 1, 
     cost = 4,
     config = {
-        extra = 3,
+        extra = 2,
         choose = 1
     },
     loc_vars = function(self,info_queue,center)
@@ -97,7 +97,7 @@ SMODS.Booster{
     weight = 0.75,
     cost = 6,
     config = {
-        extra = 4,
+        extra = 3,
         choose = 1
     },
     loc_vars = function(self,info_queue,center)
@@ -135,7 +135,7 @@ SMODS.Booster{
     pos = {x = 1,y = 1},
     discovered = false,
     weight = 0.5,
-    cost = 8,
+    cost = 10,
     config = {
         extra = 4,
         choose = 2

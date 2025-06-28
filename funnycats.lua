@@ -17,6 +17,13 @@ SMODS.Atlas{
     py = 95 -- height of one card
 }
 
+SMODS.Atlas{
+    key = 'catdecks', --atlas key
+    path = 'catdecks.png', --atlas' path in (yourMod)/assets/1x or (yourMod)/assets/2x
+    px = 71, --width of one card
+    py = 95 -- height of one card
+}
+
 SMODS.ObjectType{
     key = "catjokers",
     default = 'j_funnycats_canny_cat',
@@ -45,7 +52,7 @@ SMODS.ObjectType{
         },
         {
             key = 'Uncommon',
-            rate = 0.75
+            rate = 0.7
         },
         {
             key = 'Rare',

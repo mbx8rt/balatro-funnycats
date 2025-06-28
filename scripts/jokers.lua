@@ -17,8 +17,8 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 0, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
@@ -69,8 +69,8 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 1, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
@@ -174,8 +174,8 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 2, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
@@ -237,8 +237,8 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 3, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
@@ -317,8 +317,8 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 4, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
         probabilities = {
@@ -409,8 +409,8 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 1, y = 1}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
@@ -463,7 +463,7 @@ SMODS.Joker{
     loc_txt = { -- local text
         name = "Tole Tole",
         text = {
-          '{C:dark_edition}+3{C:attention} Joker{} slots',
+          '{C:dark_edition}+2{C:attention} Joker{} slots',
         },
         --[[unlock = {
             'Be {C:legendary}cool{}',
@@ -476,22 +476,22 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = false, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 2, y = 1}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
-        slots = 3,
+        slots = 2,
       }
     },
     loc_vars = function(self,info_queue,center)
         return {} --#1# is replaced with card.ability.extra.Xmult
     end,
     add_to_deck = function(self, card, from_debuff)
-		G.jokers.config.card_limit = G.jokers.config.card_limit + 3
+		G.jokers.config.card_limit = G.jokers.config.card_limit + 2
 	end,
 	remove_from_deck = function(self, card, from_debuff)
-		G.jokers.config.card_limit = G.jokers.config.card_limit - 3
+		G.jokers.config.card_limit = G.jokers.config.card_limit - 2
 	end,
     check_for_unlock = function(self, args)
         unlock_card(self) --unlocks the card if it isnt unlocked
@@ -523,8 +523,8 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 1, y = 2}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
@@ -590,8 +590,8 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 2, y = 2}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
@@ -599,7 +599,7 @@ SMODS.Joker{
     },
     loc_vars = function(self, info_queue, card)
         if card.area and card.area == G.jokers then
-            local compatible = G.jokers.cards[1] and G.jokers.cards[1] ~= card and
+            local compatible = G.jokers.cards[#G.jokers.cards] and G.jokers.cards[#G.jokers.cards] ~= card and
                 G.jokers.cards[#G.jokers.cards].config.center.blueprint_compat
             local main_end = {
                 {
@@ -654,15 +654,15 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 0, y = 3}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
         mult = 0, --configurable value
         mult_add = 3,
         chips = 0,
-        chips_add = 20
+        chips_add = 15
       }
     },
     loc_vars = function(self,info_queue,center)
@@ -724,16 +724,16 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 1, y = 3}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
         probabilties = {
             normal = 1
         },
         extra = {
-            handsize = 0,
-            chance = 3,
+            handsize = 1,
+            chance = 4,
             increase = 1,
         }
     },
@@ -796,17 +796,17 @@ SMODS.Joker{
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
     blueprint_compat = true, --can it be blueprinted/brainstormed/other
-    eternal_compat = false, --can it be eternal
-    perishable_compat = false, --can it be perishable
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
     pos = {x = 3, y = 3}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
         mode = -1,
-        mult = 25,
-        money = 10,
-        chips = 500,
+        mult = 20,
+        money = 8,
+        chips = 400,
         Xmult = 1.5, --configurable value
-        text = ""
+        text = "",
       }
     },
     loc_vars = function(self,info_queue,center)
@@ -835,7 +835,12 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        if context.end_of_round and context.cardarea ~= G.hand then
+        if context.end_of_round and context.cardarea ~= G.hand 
+            and not context.blueprint
+			and not context.individual
+			and not context.repetition
+			and not context.retrigger_joker
+        then
             card.ability.extra.mode = math.floor((pseudorandom('uni :3') * 2) + 0.5)
             return {
                 message = 'Randomize!',
@@ -846,8 +851,8 @@ SMODS.Joker{
             if card.ability.extra.mode == 0 then
                 return {
                     card = card,
-                    chips = card.ability.extra.chips,
                     Xmult_mod = card.ability.extra.Xmult,
+                    chips = card.ability.extra.chips,
                     message = 'X' .. card.ability.extra.Xmult,
                     colour = G.C.MULT,
                 }
@@ -855,8 +860,8 @@ SMODS.Joker{
             if card.ability.extra.mode == 1 then
                 return {
                     card = card,
-                    mult = card.ability.extra.mult,
                     Xmult_mod = card.ability.extra.Xmult,
+                    mult = card.ability.extra.mult,
                     message = 'X' .. card.ability.extra.Xmult,
                     colour = G.C.MULT,
                 }
@@ -864,8 +869,8 @@ SMODS.Joker{
             if card.ability.extra.mode == 2 then
                 return {
                     card = card,
-                    dollar = card.ability.extra.money,
                     Xmult_mod = card.ability.extra.Xmult,
+                    dollars = card.ability.extra.money,
                     message = 'X' .. card.ability.extra.Xmult,
                     colour = G.C.MULT,
                 }

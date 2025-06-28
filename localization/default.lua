@@ -4,7 +4,7 @@ return {
             uni_default_text = {
                 name = "Uni :3",
                 text = {
-                    '{X:mult,C:white}X#1#{} Mult',
+                    '{X:mult,C:white}X#1#{} Mult, {C:inactive}Nothing{}',
                     'secondary ability {C:attention}Randomizes{}',
                     'when a {C:attention}Blind{} is defeated',
                     '{C:inactive}(Currently no secondary ability)',
@@ -12,7 +12,7 @@ return {
                 },
             },
             uni_chips_text = {
-                name = "Uni {C:chips}Chips{}",
+                name = "{C:chips}Uni :3{}",
                 text = {
                     '{X:mult,C:white}X#1#{} Mult, {C:chips}+#2#{} Chips',
                     'secondary ability {C:attention}Randomizes{}',
@@ -20,7 +20,7 @@ return {
                 },
             },
             uni_mult_text = {
-                name = "Uni {C:mult}Mult{}",
+                name = "{C:mult}Uni :3{}",
                 text = {
                     '{X:mult,C:white}X#1#{} Mult, {C:mult}+#3#{} Mult',
                     'secondary ability {C:attention}Randomizes{}',
@@ -28,7 +28,7 @@ return {
                 },
             },
             uni_money_text = {
-                name = "Uni {C:money}Money{}",
+                name = "{C:money}Uni :3{}",
                 text = {
                     '{X:mult,C:white}X#1#{} Mult, gives {C:money}$#4#{}',
                     'secondary ability {C:attention}Randomizes{}',
