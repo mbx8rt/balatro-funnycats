@@ -1,12 +1,6 @@
-SMODS.Atlas{
-    key = 'catjokers', --atlas key
-    path = 'catjokers.png', --atlas' path in (yourMod)/assets/1x or (yourMod)/assets/2x
-    px = 71, --width of one card
-    py = 95 -- height of one card
-}
 
 SMODS.Joker{
-    key = 'canny cat', --joker key
+    key = 'canny_cat', --joker key
     loc_txt = { -- local text
         name = "Canny Cat",
         text = {
@@ -28,7 +22,7 @@ SMODS.Joker{
     pos = {x = 0, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
-        chips = 100,
+        chips = 80,
       }
     },
     loc_vars = function(self,info_queue,center)
@@ -57,7 +51,7 @@ SMODS.Joker{
     end,
 }
 SMODS.Joker{
-    key = 'uncanny cat', --joker key
+    key = 'uncanny_cat', --joker key
     loc_txt = { -- local text
         name = "Uncanny Cat",
         text = {
@@ -161,7 +155,7 @@ SMODS.Joker{
     end,
 }
 SMODS.Joker{
-    key = 'dapper cat', --joker key
+    key = 'dapper_cat', --joker key
     loc_txt = { -- local text
         name = "Dapper Cat",
         text = {
@@ -303,7 +297,7 @@ SMODS.Joker{
     end,
 }
 SMODS.Joker{
-    key = 'silly cat', --joker key
+    key = 'silly_cat', --joker key
     loc_txt = { -- local text
         name = "Silly Cat",
         text = {
@@ -397,7 +391,7 @@ SMODS.Joker{
     end,
 }
 SMODS.Joker{
-    key = 'ah so sorry', --joker key
+    key = 'ah_so_sorry', --joker key
     loc_txt = { -- local text
         name = "Ah! So Sorry!",
         text = {
@@ -465,7 +459,7 @@ SMODS.Joker{
 }
 
 SMODS.Joker{
-    key = 'tole tole', --joker key
+    key = 'tole_tole', --joker key
     loc_txt = { -- local text
         name = "Tole Tole",
         text = {
@@ -511,7 +505,7 @@ SMODS.Joker{
     end,
 }
 SMODS.Joker{
-    key = 'singing cat', --joker key
+    key = 'singing_cat', --joker key
     loc_txt = { -- local text
         name = "Singing Cat",
         text = {
@@ -535,7 +529,7 @@ SMODS.Joker{
     config = { 
       extra = {
         money = 1,
-        hands_max = 3,
+        hands_max = 4,
         hands_to_upgrade = 0,
         money_to_add = 1
       }
@@ -554,7 +548,7 @@ SMODS.Joker{
     calculate = function(self,card,context)
         if context.before then
             card.ability.extra.hands_to_upgrade = card.ability.extra.hands_to_upgrade + 1
-            if card.ability.extra.hands_to_upgrade > card.ability.extra.hands_max then
+            if card.ability.extra.hands_to_upgrade >= card.ability.extra.hands_max then
                 card.ability.extra.hands_to_upgrade = 0
                 card.ability.extra.money = card.ability.extra.money + card.ability.extra.money_to_add
                 return {
@@ -578,7 +572,7 @@ SMODS.Joker{
     end,
 }
 SMODS.Joker{
-    key = 'long cat', --joker key
+    key = 'long_cat', --joker key
     loc_txt = { -- local text
         name = "Long Cat",
         text = {
@@ -616,7 +610,7 @@ SMODS.Joker{
                             n = G.UIT.C,
                             config = { ref_table = card, align = "m", colour = compatible and mix_colours(G.C.GREEN, G.C.JOKER_GREY, 0.8) or mix_colours(G.C.RED, G.C.JOKER_GREY, 0.8), r = 0.05, padding = 0.06 },
                             nodes = {
-                                { n = G.UIT.T, config = { text = ' ' .. localize('k_' .. (compatible and 'compatible' or 'incompatible')) .. ' ', colour = G.C.UI.TEXT_LIGHT, scale = 0.32 * 0.8 } },
+                                { n = G.UIT.T, config = { text = ' ' .. localize('k_' .. (compatible and 'incompatible' or 'compatible')) .. ' ', colour = G.C.UI.TEXT_LIGHT, scale = 0.32 * 0.8 } },
                             }
                         }
                     }
@@ -668,7 +662,7 @@ SMODS.Joker{
         mult = 0, --configurable value
         mult_add = 3,
         chips = 0,
-        chips_add = 12
+        chips_add = 16
       }
     },
     loc_vars = function(self,info_queue,center)
@@ -714,17 +708,17 @@ SMODS.Joker{
     loc_txt = { -- local text
         name = "Floppa",
         text = {
-          '{C:attention}+#1#{} hand size',
-          '{C:green}#2# in #3#{} chance to increase',
-          'hand size by {C:attention}+#4#{} when',
-          'a {C:attention}Blind{} is defeated',
+            '{C:green}#2# in #3#{} chance to increase',
+            'hand size by {C:attention}+#4#{} when',
+            'a {C:attention}Blind{} is defeated',
+            '{C:inactive}(Currently {C:attention}+#1#{C:inactive} hand size){}',
         },
         --[[unlock = {
             'Be {C:legendary}cool{}',
         }]]
     },
     atlas = 'catjokers', --atlas' key
-    rarity = 3, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    rarity = 2, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
     --soul_pos = { x = 0, y = 0 },
     cost = 7, --cost
     unlocked = true, --where it is unlocked or not: if true, 
@@ -738,8 +732,8 @@ SMODS.Joker{
             normal = 1
         },
         extra = {
-            handsize = 1,
-            chance = 4,
+            handsize = 0,
+            chance = 3,
             increase = 1,
         }
     },
@@ -787,7 +781,7 @@ SMODS.Joker{
 ----------------------
 
 SMODS.Joker{
-    key = 'ultra glungus', --joker key
+    key = 'ultra_glungus', --joker key
     loc_txt = { -- local text
         name = "Ultra Glungus",
         text = {
@@ -860,7 +854,7 @@ SMODS.Joker{
     end,
 }
 SMODS.Joker{
-    key = 'cat astro', --joker key
+    key = 'cat_astro', --joker key
     loc_txt = { -- local text
         name = "Cat Astro",
         text = {
@@ -951,7 +945,7 @@ SMODS.Joker{
     config = { 
         extra = {
             chips = 0,
-            chipsgain = 45,
+            chipsgain = 75,
         }
     },
     loc_vars = function(self,info_queue,center)
