@@ -7,7 +7,7 @@
 	"prefix": "funnycats",
 	"main_file": "funnycats.lua",
 	"priority": 0,
-	"badge_colour": "4e3961",
+	"badge_colour": "8s448d9",
 	"badge_text_colour": "FFFFFF",
 	"version": "0.9",
 	"dependencies": [
