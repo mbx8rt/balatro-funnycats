@@ -15,7 +15,7 @@ if SMODS.find_mod('partner') and Partner_API and 'partners.lua' then
         },
         atlas = "catpartner",
         config = {extra = {mult = 0, mult_mod = 0.5}},
-        link_config = {dapper_cat = 1},
+        link_config = {j_funnycats_dapper_cat = 1},
         loc_vars = function(self, info_queue, card)
             local link_level = self:get_link_level()
             local benefits = 1
