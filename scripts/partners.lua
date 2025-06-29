@@ -25,7 +25,7 @@ if SMODS.find_mod('partner') and Partner_API and 'partners.lua' then
         calculate = function(self, card, context)
             if context.joker_main and card.ability.extra.mult >= 1 then
                 return {
-                    message = localize{type = "variable", key = "a_mult", vars = {card.ability.extra.mult_mod}},
+                    message = localize{type = "variable", key = "a_mult", vars = {card.ability.extra.mult}},
                     mult_mod = card.ability.extra.mult,
                     colour = G.C.MULT
                 }
