@@ -414,9 +414,9 @@ SMODS.Joker{
     pos = {x = 1, y = 1}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
-        mult = 36, --configurable value
+        mult = 30, --configurable value
         uses = 0,
-        uses_max = 4
+        uses_max = 5
       }
     },
     loc_vars = function(self,info_queue,center)
@@ -546,7 +546,12 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        if context.before then
+        if context.before
+        	and not context.blueprint
+			and not context.individual
+			and not context.repetition
+			and not context.retrigger_joker
+        then
             card.ability.extra.hands_to_upgrade = card.ability.extra.hands_to_upgrade + 1
             if card.ability.extra.hands_to_upgrade >= card.ability.extra.hands_max then
                 card.ability.extra.hands_to_upgrade = 0
@@ -853,7 +858,7 @@ SMODS.Joker{
                     card = card,
                     chips = card.ability.extra.chips,
                     Xmult_mod = card.ability.extra.Xmult,
-                    message = 'X' .. card.ability.extra.Xmult,
+                    message = 'X' .. card.ability.extra.Xmult .. ' Mult',
                     colour = G.C.MULT,
                 }
             end
@@ -862,7 +867,7 @@ SMODS.Joker{
                     card = card,
                     mult = card.ability.extra.mult,
                     Xmult_mod = card.ability.extra.Xmult,
-                    message = 'X' .. card.ability.extra.Xmult,
+                    message = 'X' .. card.ability.extra.Xmult .. ' Mult',
                     colour = G.C.MULT,
                 }
             end
@@ -871,7 +876,7 @@ SMODS.Joker{
                     card = card,
                     dollars = card.ability.extra.money,
                     Xmult_mod = card.ability.extra.Xmult,
-                    message = 'X' .. card.ability.extra.Xmult,
+                    message = 'X' .. card.ability.extra.Xmult .. ' Mult',
                     colour = G.C.MULT,
                 }
             end
@@ -966,8 +971,8 @@ SMODS.Joker{
     loc_txt = { -- local text
         name = "Cat Astro",
         text = {
-          '{X:mult,C:white}X#2#{} Mult for ',
-          'every {C:attention}Joker{} card you have',
+          'Gains {X:mult,C:white}X#2#{} Mult for every {C:attention}Joker{} card ',
+          'you have when a hand is played',
           '{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult{})',
           '{C:inactive}(Art by Astro){}',
         },
@@ -987,8 +992,8 @@ SMODS.Joker{
     pos = {x = 3, y = 1}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
         extra = {
-            Xmult = 1.5,
-            Xmult_percard = 1.5
+            Xmult = 1,
+            Xmult_percard = 0.15
         }
     },
     loc_vars = function(self,info_queue,center)
@@ -1004,18 +1009,25 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        local x = 0
-        for i = 1, #G.jokers.cards do
-            if G.jokers.cards[i].ability.set == 'Joker' then 
-                x = x + 1 
+        if context.before then
+            local x = 0
+            for i = 1, #G.jokers.cards do
+                if G.jokers.cards[i].ability.set == 'Joker' then 
+                    x = x + 1 
+                end
             end
+            card.ability.extra.Xmult = card.ability.extra.Xmult + (card.ability.extra.Xmult_percard * x)
+            return {
+                message = localize('k_upgrade_ex'),
+                colour = G.C.FILTER,
+                card = self
+            }
         end
-        card.ability.extra.Xmult = x * card.ability.extra.Xmult_percard
         if context.joker_main then
             return {
                 card = card,
                 Xmult_mod = card.ability.extra.Xmult,
-                message = 'X' .. card.ability.extra.Xmult,
+                message = 'X' .. card.ability.extra.Xmult .. ' Mult',
                 colour = G.C.MULT
             }
         end
@@ -1053,7 +1065,7 @@ SMODS.Joker{
     config = { 
         extra = {
             chips = 0,
-            chipsgain = 75,
+            chipsgain = 80,
         }
     },
     loc_vars = function(self,info_queue,center)

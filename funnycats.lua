@@ -31,6 +31,13 @@ SMODS.Atlas{
     path = "catpartner.png"
 }
 
+SMODS.Atlas({
+	key = "modicon",
+	path = "icon.png",
+	px = 34,
+	py = 34,
+})
+
 SMODS.ObjectType{
     key = "catjokers",
     default = 'j_funnycats_canny_cat',
@@ -47,36 +54,35 @@ SMODS.ObjectType{
         ['j_funnycats_larry'] = true,
         ['j_funnycats_floppa'] = true,
         ['j_funnycats_uni'] = true,
-        
         ['j_funnycats_ultra_glungus'] = true,
         ['j_funnycats_cat_astro'] = true,
-        ['j_funnycats_glorpsto'] = true
+        ['j_funnycats_glorpsto'] = true,
     },
     rarities = {
         {
             key = "Common",
-            rate = 1
+            weight = 1
         },
         {
             key = 'Uncommon',
-            rate = 0.7
+            weight = 0.7
         },
         {
             key = 'Rare',
-            rate = 0.25
+            weight = 0.4
         },
         {
             key = 'Legendary',
-            rate = 0.05
+            weight = 0.1
         },
     },
 }
 
 local mod_path = "" .. SMODS.current_mod.path
-local files = NFS.getDirectoryItems(mod_path .. "scripts")
-for _, file in ipairs(files) do
-	print("[FUNNYCATS] Loading file " .. file)
-	local f, err = SMODS.load_file("scripts/" .. file)
+local scripts = NFS.getDirectoryItems(mod_path .. "scripts")
+for _, script in ipairs(scripts) do
+	print("[FUNNYCATS] Loading file " .. script)
+	local f, err = SMODS.load_file("scripts/" .. script)
 	if err then
 		error(err)
 	end
