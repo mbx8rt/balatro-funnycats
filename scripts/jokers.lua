@@ -733,7 +733,7 @@ SMODS.Joker{
         },
         extra = {
             handsize = 1,
-            chance = 4,
+            chance = 5,
             increase = 1,
         }
     },
@@ -802,7 +802,7 @@ SMODS.Joker{
     config = { 
       extra = {
         mode = -1,
-        mult = 20,
+        mult = 15,
         money = 8,
         chips = 400,
         Xmult = 1.5, --configurable value
@@ -851,8 +851,8 @@ SMODS.Joker{
             if card.ability.extra.mode == 0 then
                 return {
                     card = card,
-                    Xmult_mod = card.ability.extra.Xmult,
                     chips = card.ability.extra.chips,
+                    Xmult_mod = card.ability.extra.Xmult,
                     message = 'X' .. card.ability.extra.Xmult,
                     colour = G.C.MULT,
                 }
@@ -860,8 +860,8 @@ SMODS.Joker{
             if card.ability.extra.mode == 1 then
                 return {
                     card = card,
-                    Xmult_mod = card.ability.extra.Xmult,
                     mult = card.ability.extra.mult,
+                    Xmult_mod = card.ability.extra.Xmult,
                     message = 'X' .. card.ability.extra.Xmult,
                     colour = G.C.MULT,
                 }
@@ -869,8 +869,8 @@ SMODS.Joker{
             if card.ability.extra.mode == 2 then
                 return {
                     card = card,
-                    Xmult_mod = card.ability.extra.Xmult,
                     dollars = card.ability.extra.money,
+                    Xmult_mod = card.ability.extra.Xmult,
                     message = 'X' .. card.ability.extra.Xmult,
                     colour = G.C.MULT,
                 }

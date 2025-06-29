@@ -34,7 +34,7 @@ return {
                     'secondary ability {C:attention}Randomizes{}',
                     'when a {C:attention}Blind{} is defeated',
                 },
-            }
-        }
+            },
+        },
     }
 }

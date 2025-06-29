@@ -24,6 +24,13 @@ SMODS.Atlas{
     py = 95 -- height of one card
 }
 
+SMODS.Atlas{
+    key = "catpartner",
+    px = 46,
+    py = 58,
+    path = "catpartner.png"
+}
+
 SMODS.ObjectType{
     key = "catjokers",
     default = 'j_funnycats_canny_cat',
@@ -74,7 +81,7 @@ for _, file in ipairs(files) do
 		error(err)
 	end
 	f()
-end -- file loader from cryptid :3
+end -- file loader from cryptid, thanks! :3
 
 -- OH ALSO BTW BTW this code might suck complete doo doo!! im a stinky baby when it comes to coding balatro mods
 ----------------------------------------------
