@@ -682,7 +682,13 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        if context.end_of_round and context.cardarea ~= G.hand then
+        if
+            context.end_of_round 
+        	and not context.blueprint
+			and not context.individual
+			and not context.repetition
+			and not context.retrigger_joker
+        then
             card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_add
             card.ability.extra.chips = card.ability.extra.chips + card.ability.extra.chips_add
             return {
@@ -762,7 +768,13 @@ SMODS.Joker{
         G.hand:change_size(-card.ability.extra.handsize)
     end,
     calculate = function(self,card,context)
-        if context.end_of_round and context.cardarea ~= G.hand then
+        if
+            context.end_of_round 
+        	and not context.blueprint
+			and not context.individual
+			and not context.repetition
+			and not context.retrigger_joker
+        then
             if pseudorandom('floppa') < G.GAME.probabilities.normal/card.ability.extra.chance then
                 card.ability.extra.handsize = card.ability.extra.handsize + card.ability.extra.increase
                 G.hand:change_size(card.ability.extra.increase)
@@ -840,8 +852,9 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        if context.end_of_round and context.cardarea ~= G.hand 
-            and not context.blueprint
+        if
+            context.end_of_round 
+        	and not context.blueprint
 			and not context.individual
 			and not context.repetition
 			and not context.retrigger_joker

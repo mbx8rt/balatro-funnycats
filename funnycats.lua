@@ -73,7 +73,7 @@ SMODS.ObjectType{
         },
         {
             key = 'Legendary',
-            weight = 0.1
+            weight = 0.125
         },
     },
 }
