@@ -98,7 +98,7 @@ SMODS.Joker{
 			and not context.retrigger_joker
         then
             card.ability.extra.uses = card.ability.extra.uses + 1
-            if card.ability.extra.uses <= card.ability.extra.uses_max then
+            if card.ability.extra.uses + 1 <= card.ability.extra.uses_max then
                 return{
                     message = {
                         localize{
@@ -109,7 +109,7 @@ SMODS.Joker{
                             delay = 0.45
                     },
                     colour = G.C.FILTER,
-                    card = self
+                    card = card
                 }
             else
 				G.E_MANAGER:add_event(Event({
@@ -193,12 +193,17 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        if context.before then
+        if context.before
+        	and not context.blueprint
+			and not context.individual
+			and not context.repetition
+			and not context.retrigger_joker
+        then
             card.ability.extra.mult = card.ability.extra.mult + card.ability.extra.mult_add
             return {
                 message = localize('k_upgrade_ex'),
                 colour = G.C.FILTER,
-                card = self
+                card = card
             }
         end
         if context.joker_main then
@@ -273,7 +278,7 @@ SMODS.Joker{
                 return {
                     message = localize('k_upgrade_ex'),
                     colour = G.C.FILTER,
-                    card = self
+                    card = card
                 }
             else
                 card.ability.extra.chips = card.ability.extra.limit
@@ -282,7 +287,7 @@ SMODS.Joker{
                     return {
                         message = "Max Silly!",
                         colour = G.C.FILTER,
-                        card = self
+                        card = card
                     }
                 end
             end
@@ -414,7 +419,7 @@ SMODS.Joker{
     pos = {x = 1, y = 1}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
-        mult = 30, --configurable value
+        mult = 20, --configurable value
         uses = 0,
         uses_max = 5
       }
@@ -429,7 +434,12 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        if context.before then
+        if context.before
+        	and not context.blueprint
+			and not context.individual
+			and not context.repetition
+			and not context.retrigger_joker
+        then
             if card.ability.extra.uses < card.ability.extra.uses_max then
                 card.ability.extra.uses = card.ability.extra.uses + 1
                 if card.ability.extra.uses < card.ability.extra.uses_max then
@@ -463,7 +473,8 @@ SMODS.Joker{
     loc_txt = { -- local text
         name = "Tole Tole",
         text = {
-          '{C:dark_edition}+2{C:attention} Joker{} slots',
+          '{C:dark_edition}+3{C:attention} Joker{} slots',
+          '{C:inactive}(This joker still takes up a slot)'
         },
         --[[unlock = {
             'Be {C:legendary}cool{}',
@@ -481,17 +492,17 @@ SMODS.Joker{
     pos = {x = 2, y = 1}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
     config = { 
       extra = {
-        slots = 2,
+        slots = 3,
       }
     },
     loc_vars = function(self,info_queue,center)
         return {} --#1# is replaced with card.ability.extra.Xmult
     end,
     add_to_deck = function(self, card, from_debuff)
-		G.jokers.config.card_limit = G.jokers.config.card_limit + 2
+		G.jokers.config.card_limit = G.jokers.config.card_limit + 3
 	end,
 	remove_from_deck = function(self, card, from_debuff)
-		G.jokers.config.card_limit = G.jokers.config.card_limit - 2
+		G.jokers.config.card_limit = G.jokers.config.card_limit - 3
 	end,
     check_for_unlock = function(self, args)
         unlock_card(self) --unlocks the card if it isnt unlocked
@@ -559,14 +570,14 @@ SMODS.Joker{
                 return {
                     message = localize('k_upgrade_ex'),
                     colour = G.C.FILTER,
-                    card = self
+                    card = card
                 }
             end
         end
         if context.joker_main then
             return {
                 dollars = card.ability.extra.money,
-                card = self
+                card = card
             }
         end
 
@@ -665,7 +676,7 @@ SMODS.Joker{
     config = { 
       extra = {
         mult = 0, --configurable value
-        mult_add = 3,
+        mult_add = 4,
         chips = 0,
         chips_add = 15
       }
@@ -684,7 +695,6 @@ SMODS.Joker{
     calculate = function(self,card,context)
         if
             context.end_of_round 
-        	and not context.blueprint
 			and not context.individual
 			and not context.repetition
 			and not context.retrigger_joker
@@ -734,7 +744,7 @@ SMODS.Joker{
     cost = 7, --cost
     unlocked = true, --where it is unlocked or not: if true, 
     discovered = false, --whether or not it starts discovered
-    blueprint_compat = true, --can it be blueprinted/brainstormed/other
+    blueprint_compat = false, --can it be blueprinted/brainstormed/other
     eternal_compat = true, --can it be eternal
     perishable_compat = true, --can it be perishable
     pos = {x = 1, y = 3}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
@@ -770,7 +780,6 @@ SMODS.Joker{
     calculate = function(self,card,context)
         if
             context.end_of_round 
-        	and not context.blueprint
 			and not context.individual
 			and not context.repetition
 			and not context.retrigger_joker
@@ -779,7 +788,7 @@ SMODS.Joker{
                 card.ability.extra.handsize = card.ability.extra.handsize + card.ability.extra.increase
                 G.hand:change_size(card.ability.extra.increase)
                 return {
-                    card = self,
+                    card = card,
                     message = localize('k_upgrade_ex'),
                     colour = G.C.FILTER
                 }
@@ -819,9 +828,9 @@ SMODS.Joker{
     config = { 
       extra = {
         mode = -1,
-        mult = 15,
-        money = 8,
-        chips = 400,
+        mult = 10,
+        money = 5,
+        chips = 300,
         Xmult = 1.5, --configurable value
         text = "",
       }
@@ -901,6 +910,145 @@ SMODS.Joker{
         return true
     end,
 }
+SMODS.Joker{
+    key = 'lollipop_cat', --joker key
+    loc_txt = { -- local text
+        name = "Lollipop Cat",
+        text = {
+          '{C:green}#1# in #2#{} Chance to give each',
+          'scored {C:attention}Card{} a random {C:attention}Seal{}',
+          'when a {C:attention}Hand{} is done scoring'
+        },
+        --[[unlock = {
+            'Be {C:legendary}cool{}',
+        }]]
+    },
+    atlas = 'catjokers', --atlas' key
+    rarity = 3, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    --soul_pos = { x = 0, y = 0 },
+    cost = 8, --cost
+    unlocked = true, --where it is unlocked or not: if true, 
+    discovered = false, --whether or not it starts discovered
+    blueprint_compat = false, --can it be blueprinted/brainstormed/other
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
+    pos = {x = 6, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
+    config = { 
+        extra = {
+            chance = 3,
+        }
+    },
+    loc_vars = function(self,info_queue,center)
+        return {
+            vars = {
+                G.GAME.probabilities.normal,
+                center.ability.extra.chance,
+            }
+        } --#1# is replaced with card.ability.extra.Xmult
+    end,
+    check_for_unlock = function(self, args)
+        unlock_card(self) --unlocks the card if it isnt unlocked
+    end,
+    calculate = function(self,card,context)
+        if context.after 
+			and not context.repetition
+			and not context.retrigger_joker then
+            local do_return = 0
+            for _, scored_card in ipairs(context.scoring_hand) do
+                if pseudorandom('lollipop_cat') < G.GAME.probabilities.normal/card.ability.extra.chance then
+                    local seal = SMODS.poll_seal( {guaranteed = true, type_key = "lollipop_cat_seal"} )
+                    G.E_MANAGER:add_event(Event({
+                        func = function()
+                            scored_card:set_seal(seal, false, true)
+                            scored_card:juice_up()
+                            return true
+                        end
+                    }))
+                    do_return = 1
+                end
+            end
+            if do_return == 1 then
+                return {
+                    message = "Blehh :P",
+                    card = card,
+                    colour = G.C.FILTER
+                }
+            end
+        end
+    end,
+    in_pool = function(self,wawa,wawa2)
+        --whether or not this card is in the pool, return true if it is, return false if its not
+        return true
+    end,
+}
+SMODS.Joker{
+    key = 'chair', --joker key
+    loc_txt = { -- local text
+        name = "CHAIR!!!",
+        text = {
+            'Gains {X:mult,C:white}X#2#{} Mult if played',
+            '{C:attention}Poker hand{} is a {C:attention}#3#{}',
+            '{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)'
+        },
+        --[[unlock = {
+            'Be {C:legendary}cool{}',
+        }]]
+    },
+    atlas = 'catjokers', --atlas' key
+    rarity = 1, --rarity: 1 = Common, 2 = Uncommon, 3 = Rare, 4 = Legendary
+    --soul_pos = { x = 0, y = 0 },
+    cost = 3, --cost
+    unlocked = true, --where it is unlocked or not: if true, 
+    discovered = false, --whether or not it starts discovered
+    blueprint_compat = true, --can it be blueprinted/brainstormed/other
+    eternal_compat = true, --can it be eternal
+    perishable_compat = true, --can it be perishable
+    pos = {x = 7, y = 0}, --position in atlas, starts at 0, scales by the atlas' card size (px and py): {x = 1, y = 0} would mean the sprite is 71 pixels to the right
+    config = { 
+      extra = {
+        Xmult = 1,
+        gain = 0.25,
+        poker_hand = "Full House"
+      }
+    },
+    loc_vars = function(self,info_queue,center)
+        return {
+            vars = {
+                center.ability.extra.Xmult,
+                center.ability.extra.gain,
+                localize(center.ability.extra.poker_hand, 'poker_hands'),
+            }
+        } --#1# is replaced with card.ability.extra.Xmult
+    end,
+    check_for_unlock = function(self, args)
+        unlock_card(self) --unlocks the card if it isnt unlocked
+    end,
+
+    calculate = function(self, card, context)
+        if context.before
+        and not context.repetition
+        and not context.retrigger_joker
+        and context.main_eval 
+        and context.scoring_name == card.ability.extra.poker_hand then
+            card.ability.extra.Xmult = card.ability.extra.Xmult + card.ability.extra.gain
+            return {
+                message = localize('k_upgrade_ex')
+            }
+        end
+        if context.joker_main then
+            return {
+                card = card,
+                Xmult_mod = card.ability.extra.Xmult,
+                message = 'X' .. card.ability.extra.Xmult .. ' Mult',
+                colour = G.C.MULT
+            }
+        end
+    end,
+    in_pool = function(self,wawa,wawa2)
+        --whether or not this card is in the pool, return true if it is, return false if its not
+        return true
+    end,
+}
 
 ----------------------
 -- Legendary jokers --
@@ -969,7 +1117,7 @@ SMODS.Joker{
             return {
                 message = localize('k_upgrade_ex'),
                 colour = G.C.FILTER,
-                card = self
+                card = card
             }
         end
 
@@ -986,7 +1134,7 @@ SMODS.Joker{
         text = {
           'Gains {X:mult,C:white}X#2#{} Mult for every {C:attention}Joker{} card ',
           'you have when a hand is played',
-          '{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult{})',
+          '{C:inactive}(Currently {X:mult,C:white}X#1#{C:inactive} Mult)',
           '{C:inactive}(Art by Astro){}',
         },
         --[[unlock = {
@@ -1006,7 +1154,7 @@ SMODS.Joker{
     config = { 
         extra = {
             Xmult = 1,
-            Xmult_percard = 0.15
+            Xmult_percard = 0.1
         }
     },
     loc_vars = function(self,info_queue,center)
@@ -1022,7 +1170,11 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        if context.before then
+        if context.before 
+			and not context.individual
+			and not context.repetition
+			and not context.retrigger_joker
+        then
             local x = 0
             for i = 1, #G.jokers.cards do
                 if G.jokers.cards[i].ability.set == 'Joker' then 
@@ -1033,7 +1185,7 @@ SMODS.Joker{
             return {
                 message = localize('k_upgrade_ex'),
                 colour = G.C.FILTER,
-                card = self
+                card = card
             }
         end
         if context.joker_main then
@@ -1094,7 +1246,11 @@ SMODS.Joker{
         unlock_card(self) --unlocks the card if it isnt unlocked
     end,
     calculate = function(self,card,context)
-        if context.before then
+        if context.before 
+			and not context.individual
+			and not context.repetition
+			and not context.retrigger_joker
+        then
             local x = 0
             for i = 1, #G.jokers.cards do
                 if G.jokers.cards[i].ability.set == 'Joker' then 
@@ -1105,7 +1261,7 @@ SMODS.Joker{
             return {
                 message = localize('k_upgrade_ex'),
                 colour = G.C.FILTER,
-                card = self
+                card = card
             }
         end
         if context.joker_main then

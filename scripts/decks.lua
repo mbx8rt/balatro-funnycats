@@ -5,7 +5,7 @@ SMODS.Back{
     pos = {x = 0, y = 0},
     config = { ante_scaling = 2 },
     loc_txt = {
-        name = "Uni's Challenge Deck",
+        name = "Uni Deck",
         text ={
             "Start with an {C:purple,E:1}Eternal{} {C:attention}Uni{}",
             "{C:red}X#1#{} base Blind size",

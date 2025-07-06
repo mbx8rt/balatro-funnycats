@@ -54,6 +54,9 @@ SMODS.ObjectType{
         ['j_funnycats_larry'] = true,
         ['j_funnycats_floppa'] = true,
         ['j_funnycats_uni'] = true,
+        ['j_funnycats_lollipop_cat'] = true,
+        ['j_funnycats_chair'] = true,
+        
         ['j_funnycats_ultra_glungus'] = true,
         ['j_funnycats_cat_astro'] = true,
         ['j_funnycats_glorpsto'] = true,
